@@ -9,21 +9,19 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
   zizmor:
     name: zizmor
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: read # only needed for private repos
+      actions: read # only needed for private repos
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v5
         with:
-          submodules: true
           persist-credentials: false
-      - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v6
-        with:
-          enable-cache: false
       - name: "🔒 Run Zizmor"
-        run: uvx zizmor@1.6 --format=github .github/workflows git/github/workflows/*
+        uses: zizmorcore/zizmor-action@5ca5fc7a4779c5263a3ffa0e1f693009994446d1 # v0.1.2
