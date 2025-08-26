@@ -17,6 +17,9 @@ jobs:
   linting:
     name: "🧹 linting"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v4
