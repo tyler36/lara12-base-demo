@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+const port = 5173;
+const origin = process.env.DDEV_PRIMARY_URL;
 
 export default defineConfig({
     plugins: [
@@ -10,4 +12,14 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    server: {
+        // The following line is require until the release of https://github.com/vitejs/vite/pull/19241
+        cors: { origin },
+        // allowedHosts: [`${process.env.DDEV_HOSTNAME}`, 'localhost'],
+        // // ----------------
+        host: '0.0.0.0',
+        port: port,
+        origin: `${origin}:${port}`,
+        strictPort: true
+    },
 });
