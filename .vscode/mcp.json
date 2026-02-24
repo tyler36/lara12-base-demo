@@ -4,7 +4,7 @@
             "command": "ddev",
             "args": [
                 "php",
-                "./artisan",
+                "artisan",
                 "boost:mcp"
             ]
         }
